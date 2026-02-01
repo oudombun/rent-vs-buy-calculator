@@ -20,12 +20,10 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.ui.Modifier
-import android.template.ui.note.NoteScreen
+import android.template.ui.calculator.CalculatorScreen
+import android.template.ui.calculator.CalculatorViewModel
 import android.template.ui.theme.NotesTheme
+import org.koin.androidx.compose.koinViewModel
 
 class MainActivity : ComponentActivity() {
 
@@ -34,9 +32,8 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             NotesTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    NoteScreen(modifier = Modifier.padding(innerPadding))
-                }
+                val viewModel: CalculatorViewModel = koinViewModel()
+                CalculatorScreen(viewModel = viewModel)
             }
         }
     }

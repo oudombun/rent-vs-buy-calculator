@@ -18,8 +18,6 @@ package android.template
 
 import android.app.Application
 import android.template.di.appModule
-import android.template.di.databaseModule
-import android.template.di.networkModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
@@ -31,7 +29,7 @@ class MyApplication : Application() {
         startKoin {
             androidLogger()
             androidContext(this@MyApplication)
-            modules(databaseModule, networkModule, appModule)
+            modules(appModule)
         }
     }
 }

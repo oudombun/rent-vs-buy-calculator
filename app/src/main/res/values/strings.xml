@@ -15,9 +15,5 @@
   -->
 
 <resources>
-    <string name="app_name">Notes</string>
-    <string name="hint_note">Note</string>
-    <string name="save">Save</string>
-    <string name="saved_note">Note: %s</string>
-    <string name="sync">Sync</string>
+    <string name="app_name">Rent vs Loan Calculator</string>
 </resources>
