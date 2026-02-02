@@ -41,7 +41,8 @@ import java.util.Locale
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CalculatorScreen(
-    viewModel: CalculatorViewModel = viewModel()
+    viewModel: CalculatorViewModel = viewModel(),
+    onOpenAbout: () -> Unit = {}
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
 
@@ -54,6 +55,15 @@ fun CalculatorScreen(
                         fontWeight = FontWeight.Bold,
                         fontSize = 20.sp
                     )
+                },
+                actions = {
+                    TextButton(onClick = onOpenAbout) {
+                        Text(
+                            "About",
+                            color = Color.White,
+                            fontSize = 14.sp
+                        )
+                    }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
                     containerColor = Color(0xFF2F2F2F),

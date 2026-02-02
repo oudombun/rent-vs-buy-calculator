@@ -20,6 +20,10 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import android.template.ui.about.AboutScreen
 import android.template.ui.calculator.CalculatorScreen
 import android.template.ui.calculator.CalculatorViewModel
 import android.template.ui.theme.NotesTheme
@@ -32,8 +36,23 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             NotesTheme {
-                val viewModel: CalculatorViewModel = koinViewModel()
-                CalculatorScreen(viewModel = viewModel)
+                val navController = rememberNavController()
+
+                NavHost(
+                    navController = navController,
+                    startDestination = "calculator"
+                ) {
+                    composable("calculator") {
+                        val calculatorViewModel: CalculatorViewModel = koinViewModel()
+                        CalculatorScreen(
+                            viewModel = calculatorViewModel,
+                            onOpenAbout = { navController.navigate("about") }
+                        )
+                    }
+                    composable("about") {
+                        AboutScreen(onBack = { navController.popBackStack() })
+                    }
+                }
             }
         }
     }
