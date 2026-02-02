@@ -1,5 +1,6 @@
 package android.template.ui.calculator
 
+import android.util.Log
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.Spring
@@ -133,18 +134,21 @@ private fun Step1Card(
                     Text(
                         text = "1",
                         color = Color.White,
-                        fontSize = 15.sp,
+                        fontSize = 13.sp,
                         fontWeight = FontWeight.Bold
                     )
                 }
                 Text(
                     text = "Loan Calculator",
-                    fontSize = 24.sp,
+                    fontSize = 22.sp,
                     fontWeight = FontWeight.Bold,
                     color = Color(0xFF2F2F2F)
                 )
             }
-
+            val colors = MaterialTheme.colorScheme
+            Log.d("Theme", "primary: ${colors.primary}")
+            Log.d("Theme", "onSurface: ${colors.onSurface}")
+            Log.d("Theme", "surface: ${colors.surface}")
             // House Price Input
             OutlinedTextField(
                 value = state.housePrice,
@@ -155,10 +159,6 @@ private fun Step1Card(
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                 modifier = Modifier.fillMaxWidth(),
                 singleLine = true,
-                colors = OutlinedTextFieldDefaults.colors(
-                    focusedBorderColor = Color(0xFF2F2F2F),
-                    unfocusedBorderColor = Color(0xFFBDBDBD)
-                )
             )
 
             // Interest Rate Input
@@ -335,7 +335,7 @@ private fun Step1Card(
                             )
                             Text(
                                 formatCurrencyWithDecimals(loan.monthlyPayment),
-                                fontSize = 20.sp,
+                                fontSize = 16.sp,
                                 fontWeight = FontWeight.Bold,
                                 color = Color(0xFF2F2F2F)
                             )
@@ -348,12 +348,12 @@ private fun Step1Card(
                         ) {
                             Text(
                                 "Total Interest Paid:",
-                                fontSize = 16.sp,
+                                fontSize = 14.sp,
                                 color = Color(0xFF2F2F2F)
                             )
                             Text(
                                 formatCurrency(loan.totalInterest),
-                                fontSize = 20.sp,
+                                fontSize = 17.sp,
                                 fontWeight = FontWeight.Bold,
                                 color = Color(0xFFE74C3C)
                             )
@@ -412,13 +412,13 @@ private fun Step2Card(
                     Text(
                         text = "2",
                         color = Color.White,
-                        fontSize = 15.sp,
+                        fontSize = 13.sp,
                         fontWeight = FontWeight.Bold
                     )
                 }
                 Text(
                     text = "Rent Comparison",
-                    fontSize = 24.sp,
+                    fontSize = 22.sp,
                     fontWeight = FontWeight.Bold,
                     color = Color(0xFF2F2F2F)
                 )
@@ -452,14 +452,14 @@ private fun Step2Card(
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         Text(
-                            text = "Monthly loan payment:",
-                            fontSize = 16.sp,
+                            text = "Monthly loan\n payment:",
+                            fontSize = 12.sp,
                             color = Color(0xFF2F2F2F),
                             fontWeight = FontWeight.SemiBold
                         )
                         Text(
                             text = state.loanCalculation?.let { formatCurrencyWithDecimals(it.monthlyPayment) + "/month" } ?: "",
-                            fontSize = 18.sp,
+                            fontSize = 15.sp,
                             color = Color(0xFF2E7D32),
                             fontWeight = FontWeight.Bold
                         )
@@ -529,13 +529,13 @@ private fun Step2Card(
                         ) {
                             Text(
                                 text = "Net Savings:",
-                                fontSize = 16.sp,
+                                fontSize = 15.sp,
                                 color = Color(0xFF2F2F2F),
                                 fontWeight = FontWeight.Bold
                             )
                             Text(
                                 text = "${formatCurrencyWithDecimals(savings)}/month",
-                                fontSize = 20.sp,
+                                fontSize = 17.sp,
                                 color = Color(0xFF2F2F2F),
                                 fontWeight = FontWeight.Bold
                             )
@@ -548,7 +548,7 @@ private fun Step2Card(
             if (state.scenarios.isNotEmpty()) {
                 Text(
                     "Comparison of All Scenarios:",
-                    fontSize = 20.sp,
+                    fontSize = 18.sp,
                     fontWeight = FontWeight.Bold,
                     color = Color(0xFF2F2F2F)
                 )
@@ -652,15 +652,15 @@ private fun ScenarioCard(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    "$ Total cost",
+                    "Total cost",
                     fontSize = 14.sp,
                     color = Color(0xFF757575)
                 )
                 Text(
                     formatCurrency(scenario.totalLoss),
                     fontWeight = FontWeight.Bold,
-                    fontSize = 24.sp,
-                    color = if (isBestOption) Color(0xFF2E7D32) else Color(0xFF2F2F2F)
+                    fontSize = 22.sp,
+                    color = Color(0xFFE74C3C)
                 )
             }
 
