@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+import org.gradle.api.InvalidUserDataException
+
 @Suppress("DSL_SCOPE_VIOLATION") // Remove when fixed https://youtrack.jetbrains.com/issue/KTIJ-19369
 plugins {
     alias(libs.plugins.android.application)
@@ -22,25 +24,47 @@ plugins {
 }
 
 android {
-    namespace = "android.template"
+    namespace = "com.oudombun.rentvsown"
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "android.template"
+        applicationId = "com.oudombun.rentvsown"
         minSdk = 23
         targetSdk = 36
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = 3
+        versionName = "1.0.0"
 
         vectorDrawables {
             useSupportLibrary = true
         }
     }
 
+    signingConfigs {
+        create("release") {
+            val keystorePassword = project.findProperty("KEYSTORE_PASSWORD") as String?
+            val keyPassword = project.findProperty("KEY_PASSWORD") as String?
+            if (keystorePassword == null || keyPassword == null) {
+                throw InvalidUserDataException(
+                    "You should define KEYSTORE_PASSWORD and KEY_PASSWORD in gradle.properties."
+                )
+            }
+            keyAlias = "alias"
+            storeFile = file("${rootProject.projectDir}/release.jks")
+            storePassword = keystorePassword
+            this.keyPassword = keyPassword
+        }
+    }
+
     buildTypes {
         getByName("release") {
-            isMinifyEnabled = false
+            isDebuggable = false
+            isMinifyEnabled = true
+            isShrinkResources = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            signingConfig = signingConfigs.getByName("release")
+            ndk {
+                debugSymbolLevel = "FULL"
+            }
         }
     }
 
@@ -66,6 +90,8 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
+
+
 }
 
 dependencies {

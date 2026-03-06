@@ -1,8 +1,37 @@
-# Rent vs Loan Calculator - Android App
+# Rent or Buy Calculator
 
-A professional Android calculator app built with **Jetpack Compose**, **Koin**, and **MVVM architecture**. This app helps users make informed financial decisions by comparing the costs of buying vs renting property with different down payment scenarios.
+**Should you rent or buy?** Make an informed decision with clear, data-driven insights. This Android app compares the true costs of renting versus buying a home so you can approach one of life’s biggest financial decisions with confidence.
 
-## 📱 What This App Does
+[![Get it on Google Play](https://img.shields.io/badge/Google_Play-Get_it_on_Google_Play-414141?style=for-the-badge&logo=google-play)](https://play.google.com/store/apps/details?id=com.oudombun.rentvsown)
+
+**Download:** [Rent or Buy Calculator on Google Play](https://play.google.com/store/apps/details?id=com.oudombun.rentvsown)
+
+---
+
+## 📱 App listing (Play Store)
+
+### Short description
+Rent or Buy Calculator helps you compare the true costs of renting versus buying a home. Get clear, data-driven insights to make one of life's biggest financial decisions with confidence.
+
+### Key features (store listing)
+
+- **📊 Loan calculator** – Calculate exact monthly mortgage payments, total interest over the loan period, and support for 10-, 15-, 20-year or custom-term loans with instant, detailed breakdowns.
+- **💰 Rent vs buy comparison** – Compare multiple saving scenarios (20%, 40%, 50%, 60%, 70%, 80%, 90%, 100% down), factor in monthly rent, see how long it takes to save for a down payment, and view total costs ranked from best to worst.
+- **🎯 Best option** – Automatically identifies the most cost-effective strategy, compares rent paid vs interest paid, shows payoff timelines per scenario, and accounts for different down payment amounts.
+
+### How it works
+
+1. Enter home price and interest rate.  
+2. Choose loan period (10, 15, 20 years or custom).  
+3. Calculate your monthly mortgage payment.  
+4. Enter current monthly rent (or 0 if rent-free).  
+5. Get instant comparisons of all buying scenarios.
+
+The app shows whether it’s better to buy now with a full loan, save for a partial down payment first, or save up and buy with cash (no loan).
+
+---
+
+## 📱 What This App Does (summary)
 
 Calculate and compare:
 - Monthly loan payments based on house price, interest rate, and loan period
@@ -84,31 +113,40 @@ MVVM + Compose + Koin
 └── DI: Koin modules
 ```
 
-### Tech Stack
-- **Language:** Kotlin
-- **UI:** Jetpack Compose + Material 3
-- **Architecture:** MVVM
-- **DI:** Koin
-- **State:** Kotlin Flow & StateFlow
+### Tech stack
+
+| Category      | Technology |
+|---------------|------------|
+| **Language**  | Kotlin 2.2 |
+| **Min SDK**   | 23 |
+| **Target SDK**| 36 |
+| **UI**       | Jetpack Compose (Compose BOM 2025.01), Material 3 |
+| **Architecture** | MVVM |
+| **DI**        | Koin 4.x (Android + Compose) |
+| **State**     | Kotlin Flow & StateFlow |
+| **Navigation**| Jetpack Navigation Compose |
+| **Build**     | Gradle 8.x (Kotlin DSL), JDK 17 |
 
 ---
 
 ## 📁 Project Structure
 
 ```
-app/src/main/java/android/template/
+app/src/main/java/com/oudombun/rentvsown/
 ├── ui/
 │   ├── calculator/              # 🎯 Main calculator feature
 │   │   ├── CalculatorScreen.kt
 │   │   ├── CalculatorViewModel.kt
 │   │   └── CalculatorModels.kt
-│   ├── theme/                   # Material 3 theming
+│   ├── about/                  # About screen
+│   │   └── AboutScreen.kt
+│   ├── theme/                  # Material 3 theming
+│   │   ├── Theme.kt
+│   │   └── Type.kt
 │   └── MainActivity.kt
-├── data/
-│   └── local/database/          # Room (for future use)
 ├── di/
 │   └── AppModules.kt           # Koin configuration
-└── MyApplication.kt            # App entry point
+└── HomeCalculatorApp.kt        # Application class
 ```
 
 ---
